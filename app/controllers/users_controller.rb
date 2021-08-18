@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     post '/users' do
         if params[:name] != "" && params[:email] != "" && params[:password] != ""
-            @user = User.find_or_create_by(params)
+            @user = User.create(params)
             redirect "/users/#{@user.id}"
         else
             #invalid
@@ -28,7 +28,8 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-        "User show page"
+        @user = User.find_by(id: params[:id])
+        erb :'/users/show'
     end
 
 end
