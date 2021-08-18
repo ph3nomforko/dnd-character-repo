@@ -14,7 +14,11 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/signup' do
+    get '/signup' do # Render the signup page
+        erb :signup
+    end
+
+    post '/signup' do
 
     end
 
