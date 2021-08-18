@@ -10,7 +10,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            # Give error message if wrong credentials
+            erb :welcome
         end
     end
 
@@ -23,13 +23,19 @@ class UsersController < ApplicationController
             @user = User.create(params)
             redirect "/users/#{@user.id}"
         else
-            #invalid
+            erb :signup
         end
     end
 
     get '/users/:id' do
         @user = User.find_by(id: params[:id])
+        session[:user_id]
         erb :'/users/show'
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/'
     end
 
 end
