@@ -19,7 +19,12 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-
+        if params[:name] != "" && params[:email] != "" && params[:password] != ""
+            @user = User.find_or_create_by(params)
+            redirect "/users/#{@user.id}"
+        else
+            #invalid
+        end
     end
 
     get '/users/:id' do
