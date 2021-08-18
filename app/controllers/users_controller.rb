@@ -10,7 +10,8 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            erb :welcome
+            # add message
+            redirect '/login'
         end
     end
 
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            erb :signup
+            redirect '/signup'
         end
     end
 
