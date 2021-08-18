@@ -4,6 +4,10 @@ class UsersController < ApplicationController
         erb :login
     end
 
+    post '/login' do # Receive login form, find the user, and create a session
+        
+    end
+
     get '/signup' do
 
     end
