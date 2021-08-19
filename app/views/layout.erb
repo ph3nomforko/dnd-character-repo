@@ -15,7 +15,6 @@
   </head>
   <body>
 
-
     <div class="wrapper">
       <div class="nav">
         <% if logged_in? %>
@@ -25,7 +24,14 @@
           <h2><%= current_user.name %>'s Vault</h2>
         <% end %>
       </div>
+    </div>
 
+    <% if flash[:message] %>
+      <h4><%= flash[:message] %></h4>
+    <% end %>
+
+    <div class="wrapper">
+    
         <%= yield %>
 
       <footer class="branding">
