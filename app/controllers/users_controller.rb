@@ -21,13 +21,14 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        if params[:name] != "" && params[:email] != "" && params[:password] != ""
+        @user = User.new(params)
+        if @user.save
             flash[:message] = "Welcome to your new D&D character repository!"
-            @user = User.create(params)
+#            @user = User.create(params)
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            flash[:error] = "Please check your credentials and try again."
+            flash[:error] = "Account creation failed. #{@user.errors.full_messages.to_sentence}"
             redirect '/signup'
         end
     end
