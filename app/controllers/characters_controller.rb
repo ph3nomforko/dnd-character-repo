@@ -4,4 +4,8 @@ class CharactersController < ApplicationController
         erb :'/characters/new'
     end
 
+    post '/characters' do
+
+    end
+
 end
