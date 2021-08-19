@@ -35,7 +35,7 @@ class CharactersController < ApplicationController
     get '/characters/:id/edit' do
         find_and_set_character
         if logged_in?
-            if @character.user == current_user
+            if authorized_to_edit?(@character)
                 erb :'/characters/edit'
             else
                 redirect "/users/#{current_user.id}"
@@ -48,7 +48,7 @@ class CharactersController < ApplicationController
     patch '/characters/:id' do
         find_and_set_character
         if logged_in?
-            if @character.user == current_user
+            if authorized_to_edit?(@character)
                 @character.update(character_name: params[:character_name], character_class: params[:character_class],
                     species: params[:species], level: params[:level])
             else
@@ -58,10 +58,6 @@ class CharactersController < ApplicationController
             redirect '/'
         end
     end
-
-#    get '/characters/index' do
-#        erb :'/characters/index'
-#    end
 
     private
     def find_and_set_character
