@@ -24,7 +24,7 @@ class CharactersController < ApplicationController
                 species: params[:species], level: params[:level], user_id: current_user.id)
             redirect "/characters/#{@character.id}"
         else
-            flash[:message] = "Please check your character's vitals and try again."
+            flash[:error] = "Please check your character's vitals and try again."
             redirect '/characters/new'
         end
     end
@@ -56,7 +56,7 @@ class CharactersController < ApplicationController
                     species: params[:species], level: params[:level])
                 redirect "/characters/#{@character.id}"
             else
-                flash[:message] = "Please check your character's vitals and try again."
+                flash[:error] = "Please check your character's vitals and try again."
                 redirect "/characters/#{@character.id}"
             end
         else
