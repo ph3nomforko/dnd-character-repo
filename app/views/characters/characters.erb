@@ -1,0 +1,7 @@
+<%= current_user.name %>'s Character List
+
+<% current_user.each do |u| %>
+    <% current_user.characters.each do |c| %>
+        <p>Name: <%= @character.character_name %></p>
+    <% end %>
+<% end %>
