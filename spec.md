@@ -19,9 +19,15 @@ Specs:
 - [x] Include user accounts with unique login attribute.
     The unique login attribute is an email from the user.
 
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [ ] Ensure that users can't modify content created by other users
-- [ ] Include user input validations
+- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying.
+    User can use all CRUD operations.
+
+- [x] Ensure that users can't modify content created by other users.
+    User cannot access edit/delete functions for other users' content.
+
+- [x] Include user input validations
+    User cannot signup/login/edit without all forms filled in.
+
 - [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
 - [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
