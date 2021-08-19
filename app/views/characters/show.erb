@@ -4,7 +4,7 @@
 <h4>Species: <%= @character.species %></h4>
 <h4>Level: <%= @character.level %></h4>
 
-<% if current_user == @character.user.id %>
+<% if authorized_to_edit?(@character) %>
     <a href="/characters/<%=@character.id%>/edit">Edit Character</a>
     <a href="/characters/<%=@character.id%>/delete">Delete Character</a>
 <% end %>
