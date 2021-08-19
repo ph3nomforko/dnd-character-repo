@@ -9,7 +9,7 @@ class CharactersController < ApplicationController
             redirect '/'
         end
 
-        if params[:name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
+        if params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
             @character = Character.create(name: params[:name], character_class: params[:character_class],
                 species: params[:species], level: params[:level], user_id: current_user.id)
             redirect "/characters/#{@character.id}"
@@ -23,4 +23,7 @@ class CharactersController < ApplicationController
         erb :'/characters/show'
     end
 
+    get '/characters/:id/edit' do
+        "Hello"
+    end
 end

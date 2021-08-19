@@ -1,5 +1,9 @@
 <h3><%= current_user.name %>'s Character</h3>
-<h5>Name: <%= @character.name %></h5>
+<h5>Name: <%= @character.character_name %></h5>
 <h5>Class: <%= @character.character_class %></h5>
 <h5>Species: <%= @character.species %></h5>
 <h5>Level: <%= @character.level %></h5>
+
+<a href="/characters/<%=@character.id%>/edit">Edit Character</a>
+
+<a href="/characters/<%=@character.id%>/delete">Delete Character</a>
