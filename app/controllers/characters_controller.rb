@@ -1,20 +1,17 @@
 class CharactersController < ApplicationController
     
     get '/characters' do
+        @characters = Character.all
         if logged_in?
-            if @character.user == current_user
-                erb :'/characters/characters'
-            else
-                redirect "/users/#{current_user.id}"
-            end
+            erb :'characters/index'
         else
-            redirect '/'
+           redirect '/'
         end
     end
     
     get '/characters/new' do
         erb :'/characters/new'
-    end
+    end#
 
     post '/characters' do
         if !logged_in?
