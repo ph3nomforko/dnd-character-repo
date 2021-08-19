@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
-
+    
     get '/login' do # Render login page
-        puts flash
         erb :login
     end
 
     post '/login' do # Receive login form, find the user, and create a session
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
+            flash[:message] = "Login successful. Welcome back!"
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            flash[:message] = "Your credentials were invalid. Please signup or try again."
+            flash[:error] = "Your credentials were invalid. Please signup or try again."
             redirect '/login'
         end
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            flash[:message] = "Please check your credentials and try again."
+            flash[:error] = "Please check your credentials and try again."
             redirect '/signup'
         end
     end
