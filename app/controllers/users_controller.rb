@@ -16,16 +16,18 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/signup' do # Render the signup page
+    get '/signup' do
         erb :signup
     end
 
     post '/users' do
         if params[:name] != "" && params[:email] != "" && params[:password] != ""
+            flash[:message] = "Welcome to your new D&D character repository!"
             @user = User.create(params)
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
+            flash[:message] = "Please check your credentials and try again."
             redirect '/signup'
         end
     end
