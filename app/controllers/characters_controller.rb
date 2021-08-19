@@ -19,10 +19,12 @@ class CharactersController < ApplicationController
         end
 
         if params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
+            flash[:message] = "You've successfully created a new character!"
             @character = Character.create(character_name: params[:character_name], character_class: params[:character_class],
                 species: params[:species], level: params[:level], user_id: current_user.id)
             redirect "/characters/#{@character.id}"
         else
+            flash[:message] = "Please check your character's vitals and try again."
             redirect '/characters/new'
         end
     end
@@ -49,10 +51,12 @@ class CharactersController < ApplicationController
         find_and_set_character
         if logged_in?
             if authorized_to_edit?(@character) && params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
+                flash[:message] = "You've successfully updated your character!"
                 @character.update(character_name: params[:character_name], character_class: params[:character_class],
                     species: params[:species], level: params[:level])
                 redirect "/characters/#{@character.id}"
             else
+                flash[:message] = "Please check your character's vitals and try again."
                 redirect "/characters/#{@character.id}"
             end
         else
