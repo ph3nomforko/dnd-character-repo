@@ -20,7 +20,8 @@
       <div class="nav">
         <a href="/logout">Logout</a>
         <a href="/characters">All Characters</a>
-        <a href="/characters/new">Create a Character</a>
+        <a href="/characters/new">Create a Character</a><br>
+        <h4><%= current_user.name %>'s Repository</h4>
       </div>
 
         <%= yield %>
