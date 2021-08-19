@@ -6,5 +6,8 @@
 
 <% if authorized_to_edit?(@character) %>
     <a href="/characters/<%=@character.id%>/edit">Edit Character</a>
-    <a href="/characters/<%=@character.id%>/delete">Delete Character</a>
+    <form class="" action="/characters/<%=@character.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" name="" value="Delete this Character">
+    </form>
 <% end %>
