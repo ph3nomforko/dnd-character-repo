@@ -48,16 +48,12 @@ class CharactersController < ApplicationController
     patch '/characters/:id' do
         find_and_set_character
         if logged_in?
-            if authorized_to_edit?(@character)
-                if params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
-                    @character.update(character_name: params[:character_name], character_class: params[:character_class],
-                        species: params[:species], level: params[:level])
-                    redirect "/characters/#{@character.id}"
-                else
-                    redirect "/characters/#{@character.id}/edit"
-                end
+            if authorized_to_edit?(@character) && params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
+                @character.update(character_name: params[:character_name], character_class: params[:character_class],
+                    species: params[:species], level: params[:level])
+                redirect "/characters/#{@character.id}"
             else
-                redirect "/users/#{current_user.id}"
+                redirect "/characters/#{@character.id}"
             end
         else
             redirect '/'
