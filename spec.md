@@ -3,10 +3,10 @@
 Specs:
 - [x] Use Sinatra to build the app
 - [x] Use ActiveRecord for storing information in a database
-- [x] Include more than one model class (e.g. User, Post, Category)
-- [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
-- [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
-- [ ] Include user accounts with unique login attribute (username or email)
+- [x] Include more than one model class. Mine are User and Character.
+- [x] Include at least one has_many relationship on your User model. A user has many characters.
+- [x] Include at least one belongs_to relationship on another model. A character belongs to a user.
+- [x] Include user accounts with unique login attribute. My unique login attribute is an email.
 - [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 - [ ] Ensure that users can't modify content created by other users
 - [ ] Include user input validations
