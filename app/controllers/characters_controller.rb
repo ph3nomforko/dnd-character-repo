@@ -19,12 +19,27 @@ class CharactersController < ApplicationController
     end
 
     get '/characters/:id' do
-        @character = Character.find_by(id: params[:id])
+        find_and_set_character
         erb :'/characters/show'
     end
 
     get '/characters/:id/edit' do
-        @character = Character.find_by(id: params[:id])
+        find_and_set_character
         erb :'/characters/edit'
     end
+
+    patch '/characters/:id' do
+        # Find character
+        find_and_set_character
+        # Update character
+
+        # Redirect to logical destination
+    end
+
+    private
+        def find_and_set_character
+            @character = Character.find_by(id: params[:id])
+        end
+    end
+    
 end
