@@ -15,16 +15,17 @@
   </head>
   <body>
 
+    <% if logged_in? %>
     <div class="wrapper">
       <div class="nav">
-        <% if logged_in? %>
           <a href="/logout">Logout</a>
           <a href="/characters">Your Characters</a>
           <a href="/characters/new">Create a Character</a><br>
           <h2><%= current_user.name %>'s Vault</h2>
-        <% end %>
+
       </div>
     </div>
+    <% end %>
 
     <% if flash[:message] %>
       <h4><%= flash[:message] %></h4>
