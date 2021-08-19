@@ -14,17 +14,14 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-
     <% if logged_in? %>
-    <div class="wrapper">
-      <div class="nav">
+      <div class="topnav">
           <a href="/logout">Logout</a>
           <a href="/characters">Your Characters</a>
           <a href="/characters/new">Create a Character</a><br>
           <h2><%= current_user.name %>'s Vault</h2>
 
       </div>
-    </div>
     <% end %>
 
     <% if flash[:message] %>
