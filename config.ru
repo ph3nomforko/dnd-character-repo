@@ -8,4 +8,5 @@ use Rack::MethodOverride #allows PATCH and DELETE in controllers
 
 # mount other controllers with 'use'
 use UsersController
+use CharactersController
 run ApplicationController
