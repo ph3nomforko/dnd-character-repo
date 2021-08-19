@@ -1,0 +1,6 @@
+<h3> All Characters </h3>
+<% @characters.each do |character| %>
+    <a href="/characters/<%= character.id %>"><%= character.character_name %></a>
+    <%= character.level %>
+    Created by: <%= character.user.name %><br>
+<% end %>
