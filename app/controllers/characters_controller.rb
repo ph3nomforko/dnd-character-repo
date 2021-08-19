@@ -29,17 +29,15 @@ class CharactersController < ApplicationController
     end
 
     patch '/characters/:id' do
-        # Find character
         find_and_set_character
-        # Update character
-
-        # Redirect to logical destination
+        @character.update(character_name: params[:character_name], character_class: params[:character_class],
+            species: params[:species], level: params[:level])
+        redirect "/characters/#{@character.id}"
     end
 
     private
-        def find_and_set_character
-            @character = Character.find_by(id: params[:id])
-        end
+    def find_and_set_character
+        @character = Character.find_by(id: params[:id])
     end
-    
+
 end
