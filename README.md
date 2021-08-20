@@ -4,8 +4,15 @@ A basic app that allows users to log in, sign up, and create Dungeons & Dragons 
 ## Installation
 To install the gem: 
 `gem install dnd-character-repo`
+
 Then run:
 `bundle install`
+
+To run on your local machine, enter
+`shotgun`
+in the command line and proceed to
+`https://localhost:9393`
+in your browser of choice.
 
 ## Using the Repository
 Sign up or log in, and then use the links in the navbar to either view your characters, create a new character, edit an existing character, or delete an outdated (or dead) character.
