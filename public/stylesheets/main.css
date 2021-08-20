@@ -37,8 +37,8 @@
 
   /* Change the color of links on hover */
   .topnav a:hover {
-    background-color: lightslategrey;
-    color: black;
+    background-color: darkred;
+    color: white;
   }
 
   /* Add a color to the active/current link */
@@ -113,6 +113,21 @@
     border-top: 2px solid #ccc;
     margin-top: 20px;
     padding-top: 20px;
+  }
+
+  a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    background-color: darkred; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   }
 }
 
