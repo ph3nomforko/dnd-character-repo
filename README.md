@@ -10,5 +10,8 @@ Then run:
 # Using the Repository
 Sign up or log in, and then use the links in the navbar to either view your characters, create a new character, edit an existing character, or delete an outdated (or dead) character.
 
+# Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/ph3nomforko/dnd-character-repository. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
 LICENSE :
 https://opensource.org/licenses/MIT
