@@ -13,5 +13,5 @@ Sign up or log in, and then use the links in the navbar to either view your char
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/ph3nomforko/dnd-character-repository. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-## LICENSE
+## License
 https://opensource.org/licenses/MIT
