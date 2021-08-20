@@ -4,7 +4,7 @@
 <h4>Level: <%= @character.level %></h4><br>
 
 <% if authorized_to_edit?(@character) %>
-    <a href="/characters/<%=@character.id%>/edit"><button type="submit" formtarget="_self">Edit Character</button>
+    <a href="/characters/<%=@character.id%>/edit" class="button">Edit Character</a>
     <form class="" action="/characters/<%=@character.id%>" method="post">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" name="" value="Delete this Character">
