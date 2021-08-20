@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
     
-    get '/login' do # Render login page
+    get '/login' do
         erb :login
     end
 
-    post '/login' do # Receive login form, find the user, and create a session
+    post '/login' do
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             flash[:message] = "Login successful. Welcome back!"
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            flash[:error] = "Your credentials were invalid. Please signup or try again."
+            flash[:error] = "Your credentials were invalid. #{@user.errors.full_messages.to_sentence}."
             redirect '/login'
         end
     end
@@ -23,18 +23,18 @@ class UsersController < ApplicationController
     post '/users' do
         @user = User.new(params)
         if @user.save
-            flash[:message] = "Welcome to your new D&D character repository!"
-#            @user = User.create(params)
+            flash[:message] = "Welcome #{@user.name} to your new D&D character repository!"
             session[:user_id] = @user.id
-            redirect "/users/#{@user.id}"
+            redirect "/characters/new"
         else
-            flash[:error] = "Account creation failed. #{@user.errors.full_messages.to_sentence}"
+            flash[:error] = "Account creation failed. #{@user.errors.full_messages.to_sentence}."
             redirect '/signup'
         end
     end
 
     get '/users/:id' do
         @user = User.find_by(id: params[:id])
+        redirect_if_not_logged_in
         erb :'/users/show'
     end
 
