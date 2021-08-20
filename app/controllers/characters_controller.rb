@@ -2,11 +2,8 @@ class CharactersController < ApplicationController
     
     get '/characters' do
         @characters = Character.all
-        if logged_in?
-            erb :'characters/index'
-        else
-           redirect '/'
-        end
+        redirect_if_not_logged_in
+        erb :'characters/index'
     end
     
     get '/characters/new' do
@@ -14,17 +11,15 @@ class CharactersController < ApplicationController
     end#
 
     post '/characters' do
-        if !logged_in?
-            redirect '/'
-        end
+        redirect_if_not_logged_in
 
-        if params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
+        @character = Character.new(character_name: params[:character_name], character_class: params[:character_class],
+            species: params[:species], level: params[:level], user_id: current_user.id)
+        if @character.save
             flash[:message] = "You've successfully created a new character!"
-            @character = Character.create(character_name: params[:character_name], character_class: params[:character_class],
-                species: params[:species], level: params[:level], user_id: current_user.id)
             redirect "/characters/#{@character.id}"
         else
-            flash[:error] = "Please check your character's vitals and try again."
+            flash[:error] = "Character creation failed. #{@character.errors.full_messages.to_sentence}."
             redirect '/characters/new'
         end
     end
@@ -36,31 +31,25 @@ class CharactersController < ApplicationController
 
     get '/characters/:id/edit' do
         find_and_set_character
-        if logged_in?
-            if authorized_to_edit?(@character)
-                erb :'/characters/edit'
-            else
-                redirect "/users/#{current_user.id}"
-            end
+        redirect_if_not_logged_in
+        if authorized_to_edit?(@character)
+            erb :'/characters/edit'
         else
-            redirect '/'
+            redirect "/users/#{current_user.id}"
         end
     end
 
     patch '/characters/:id' do
         find_and_set_character
-        if logged_in?
-            if authorized_to_edit?(@character) && params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
-                flash[:message] = "You've successfully updated your character!"
-                @character.update(character_name: params[:character_name], character_class: params[:character_class],
-                    species: params[:species], level: params[:level])
-                redirect "/characters/#{@character.id}"
-            else
-                flash[:error] = "Please check your character's vitals and try again."
-                redirect "/characters/#{@character.id}"
-            end
+        redirect_if_not_logged_in
+        if authorized_to_edit?(@character) && params[:character_name] != "" && params[:character_class] != "" && params[:species] != "" && params[:level] != ""
+            flash[:message] = "You've successfully updated your character!"
+            @character.update(character_name: params[:character_name], character_class: params[:character_class],
+                species: params[:species], level: params[:level])
+            redirect "/characters/#{@character.id}"
         else
-            redirect '/'
+            flash[:error] = "Please check your character's vitals and try again."
+            redirect "/characters/#{@character.id}"
         end
     end
 
@@ -68,8 +57,10 @@ class CharactersController < ApplicationController
         find_and_set_character
         if authorized_to_edit?(@character)
             @character.destroy
+            flash[:message] = "You successfully deleted the character."
             redirect '/characters'
         else
+            flash[:error] = "You are not authorized to edit or delete that character."
             redirect '/characters'
         end
     end
