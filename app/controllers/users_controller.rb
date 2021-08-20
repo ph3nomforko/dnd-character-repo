@@ -11,7 +11,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
         else
-            flash[:error] = "Your credentials were invalid. #{@user.errors.full_messages.to_sentence}."
+            flash[:error] = "Your credentials were invalid."
             redirect '/login'
         end
     end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     post '/users' do
         @user = User.new(params)
         if @user.save
-            flash[:message] = "Welcome #{@user.name} to your new D&D character repository!"
+            flash[:message] = "Welcome #{@user.name}, to your new D&D character repository!"
             session[:user_id] = @user.id
             redirect "/characters/new"
         else
