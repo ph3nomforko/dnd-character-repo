@@ -43,7 +43,6 @@ class CharactersController < ApplicationController
         find_and_set_character
         redirect_if_not_logged_in
         if authorized_to_edit?(@character) && @character.valid?
-            binding.pry
             flash[:message] = "You've successfully updated your character!"
             @character.update(character_name: params[:character_name], character_class: params[:character_class],
                 species: params[:species], level: params[:level])
