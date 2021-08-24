@@ -1,0 +1,4 @@
+<% @characters.each do |character| %>
+    <a href="/characters/<%= character.id %>"><%= character.character_name %></a>
+    <%= character.level %><br>
+<% end %>

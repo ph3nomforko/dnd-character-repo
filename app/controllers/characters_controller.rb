@@ -1,14 +1,19 @@
 class CharactersController < ApplicationController
     
     get '/characters' do
-        @characters = Character.all
+        @characters = current_user.characters
         redirect_if_not_logged_in
         erb :'characters/index'
     end
     
     get '/characters/new' do
         erb :'/characters/new'
-    end#
+    end
+
+    get '/characters/all' do
+        @characters = Character.all
+        erb :'/characters/all'
+    end
 
     post '/characters' do
         redirect_if_not_logged_in
